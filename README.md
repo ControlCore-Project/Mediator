@@ -98,7 +98,7 @@ $ curl -i -X POST --url http://localhost:8001/services/mediator/routes --data 'p
 Now, controlcore.org is routed through the Kong APIs.
 
 # Configuring Secondary Kong (Only if the API Key generation is handled publicly)
-*Please ignore this section if the API key generation is not managed externally, exposing the Kong's admin APIs securely to the public. Therefore, this section is largely optional*
+*Please ignore this section if the API key generation is not managed externally, exposing the Kong's admin APIs securely to the public. Therefore, this section is largely optional.*
 
 Start Secondary Kong that functions as an Admin Kong
 ```
