@@ -5,7 +5,9 @@ The Control-Core Mediator is built with is Python-3.7. It is the core component 
 
 # Building Mediator Container
 
-Connect to the Server VM, assuming x.x.x.x to be the IP address of your server.
+Log in to the server which you like to configure as the Mediator.
+
+If it is a remote AWS server, use ssh as below, assuming x.x.x.x to be the IP address of your server.
 ````
 $ ssh -i "controlcore.pem" ubuntu@x.x.x.x
 ````
