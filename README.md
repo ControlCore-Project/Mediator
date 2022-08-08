@@ -1,6 +1,6 @@
 # The Control-Core Mediator for Closed-Loop Neuromodulation Control Systems
 
-The Control-Core Mediator is built with is Python-3.7. It is the core component that makes the distributed executions a reality in the Control-Core framework.
+The Control-Core Mediator is built with is Python-3.7. It is the core component that makes the distributed executions a reality in the Control-Core framework. The Mediator enables distributed execution of the CONTROL-CORE studies. As a containerized architecture, Mediator is easy to install, together with a Kong API Gateway-based authentication mechanism.
 
 
 # Building Mediator Container
