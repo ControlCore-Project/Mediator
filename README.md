@@ -42,6 +42,7 @@ $ docker run -d --name kong-database \
                 -p 9042:9042 \
                 cassandra:3
 
+Wait a minute or two for Cassandra to start.
 
 $ docker run --rm \
     --link kong-database:kong-database \
