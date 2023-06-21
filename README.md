@@ -26,12 +26,14 @@ $ sudo docker build -t mediator .
 
 # Running CONTROL-CORE Mediator with Kong as containers
 
-If you are already running Mediator, make sure to stop and clear existing Mediator container as it is likely conflict with the port. If there is Kong gateway running in default ports, stop and clear it too.
+If you are already running Mediator, make sure to stop and clear existing Mediator container as it is likely conflict with the port. If there is Kong gateway running in default ports, stop and clear it too. Same goes with Koing Database.
 ````
 $ docker stop mediator
 $ docker rm mediator
 $ docker stop kong
 $ docker rm kong
+$ docker stop kong-database
+$ docker rm kong-database
 ````
 
 Start and configure Cassandra container for Kong API.
