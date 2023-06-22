@@ -225,11 +225,11 @@ $ sudo docker exec -it dfdd /bin/bash
 # Start the containers if they are stopped on their own.
 
 ````
-$ docker start kong-database
+$ sudo docker start kong-database
 kong-database
-$ docker start kong
+$ sudo docker start kong
 kong
-$ docker start mediator
+$ sudo docker start mediator
 mediator
 ````
 # Citing the CONTROL-CORE Mediator
