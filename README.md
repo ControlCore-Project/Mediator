@@ -19,6 +19,10 @@ $ git clone git@github.com:ControlCore-Project/Mediator.git
 
 First build the Docker Container of the Mediator.
 ````
+$ cd Mediator
+
+Get the latest version if the clone was old.
+
 $ git pull
 
 $ sudo docker build -t mediator .
