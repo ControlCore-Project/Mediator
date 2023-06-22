@@ -161,7 +161,7 @@ $ pip3 install requests
 
 Change the value of global variable "tenant" to your preferred string such as your OSPARC ID.
 
-Then run the APIKeyGen.py, after replacing the value www.project-url.org with the actual URL of your project (i.e., the URL where Mediator is deployed).
+Then run the APIKeyGen.py, after replacing the value www.project-url.org with the actual URL of your project (i.e., the URL where Mediator is deployed). If the APIKeyGen.py is run locally, replace it with localhost instead.
 
 Take note of the API Key output.
 
