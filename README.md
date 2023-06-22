@@ -17,7 +17,7 @@ Perform Git clone if this is the first time you are configuring the Server
 $ git clone git@github.com:ControlCore-Project/Mediator.git
 ````
 
-First build the Docker Container of the Mediator.
+First, build the Docker Container of the Mediator.
 ````
 $ cd Mediator
 ````
@@ -33,23 +33,23 @@ $ sudo docker build -t mediator .
 
 If you are already running Mediator, make sure to stop and clear existing Mediator container as it is likely conflict with the port. If there is Kong gateway running in default ports, stop and clear it too. Same goes with Koing Database.
 ````
-$ docker stop mediator
-$ docker rm mediator
-$ docker stop kong
-$ docker rm kong
-$ docker stop kong-database
-$ docker rm kong-database
+$ sudo docker stop mediator
+$ sudo docker rm mediator
+$ sudo docker stop kong
+$ sudo docker rm kong
+$ sudo docker stop kong-database
+$ sudo docker rm kong-database
 ````
 
 Start and configure Cassandra container for Kong API.
 ````
-$ docker run -d --name kong-database \
+$ sudo docker run -d --name kong-database \
                 -p 9042:9042 \
                 cassandra:3
 
 Wait a minute or two for Cassandra to start.
 
-$ docker run --rm \
+$ sudo docker run --rm \
     --link kong-database:kong-database \
     -e "KONG_DATABASE=cassandra" \
     -e "KONG_PG_HOST=kong-database" \
@@ -61,7 +61,7 @@ $ docker run --rm \
 
 Start Kong
 ````
-$ docker run -d --name kong \
+$ sudo docker run -d --name kong \
     --link kong-database:kong-database \
     -e "KONG_DATABASE=cassandra" \
     -e "KONG_PG_HOST=kong-database" \
@@ -97,11 +97,11 @@ $ curl -X DELETE "http://localhost:8001/services/mediator/"
 
 Define Kong Service and Route.
 
-First Configure a Kong service, replacing the variable "private-ip" with the private IP address of your server below.
+First, configure a Kong service, replacing the variable "private-ip" with the private IP address of your server below.
 ````
 $ curl -i -X POST --url http://localhost:8001/services/ --data 'name=mediator' --data 'url=http://private-ip:8090'
 ````
-Then configure route to the service
+Then configure the route to the service
 ````
 $ curl -i -X POST --url http://localhost:8001/services/mediator/routes --data 'paths=/'
 ````
@@ -109,7 +109,7 @@ $ curl -i -X POST --url http://localhost:8001/services/mediator/routes --data 'p
 Now, controlcore.org is routed through the Kong APIs.
 
 # Configuring Secondary Kong (Only if the API Key generation is handled publicly)
-*Please ignore this section if the API key generation is not managed externally, exposing the Kong's admin APIs securely to the public. Therefore, this section is largely optional.*
+*This section assumes the API key generation is managed externally, exposing Kong's admin APIs securely to the public. Otherwise, the secondary Kong is not necessary and the API Keys should be configured directly, skipping this step, and adapting accordingly.*
 
 Start Secondary Kong that functions as an Admin Kong
 ```
