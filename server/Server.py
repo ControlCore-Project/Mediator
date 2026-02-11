@@ -34,6 +34,11 @@ def hello_world():
 @app.route('/init/<dir>', methods=['POST']) # POST has u and ym
 def init(dir=None):
     apikey = request.args.get('apikey')
+    
+    # validate apikey presence to prevent TypeError
+    if not apikey:
+        return "Missing API key", 400
+
     dirname = dir + "_" + apikey
     logging.info("Init Request received for: %s", dirname)
     # Get the file from the POST request
@@ -57,6 +62,11 @@ def init(dir=None):
 def ctl(dir=None):
     return_file = request.args.get('fetch')
     apikey = request.args.get('apikey')
+
+    # validate apikey presence to prevent TypeError
+    if not apikey:
+        return "Missing API key", 400
+
     dirname = dir + "_" + apikey
     logging.info("[CTL] Request received for: %s", dirname)
     f1 = request.files['file1']
@@ -80,6 +90,11 @@ def ctl(dir=None):
 def pm(dir=None):
     return_file = request.args.get('fetch')
     apikey = request.args.get('apikey')
+
+    # validate apikey presence to prevent TypeError
+    if not apikey:
+        return "Missing API key", 400
+
     dirname = dir + "_" + apikey
     logging.info("[PM] Request received for: %s", dirname)
     f1 = request.files['file1']
@@ -102,6 +117,11 @@ def pm(dir=None):
 @app.route('/cleanup/<dir>', methods=['DELETE'])
 def cleanup(dir=None):
     apikey = request.args.get('apikey')
+
+    # validate apikey presence to prevent TypeError
+    if not apikey:
+        return "Missing API key", 400
+
     dirname = dir + "_" + apikey
     logging.info("Cleanup Request received for: %s", dirname)
     if os.path.exists(WORKDIR + secure_filename(dirname)):
