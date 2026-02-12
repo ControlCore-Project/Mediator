@@ -1,11 +1,14 @@
 #!/bin/bash
 
+# accept IP from first argument, or default to localhost
+IP_ADDRESS=${1:-"localhost"}
+
 SERVICES=('init' 'ctl' 'pm' 'cleanup')
 for service in "${SERVICES[@]}"
 do
 	name="name="$service
 	path="paths=/"$service
-	service_path="url=http://private-ip:8090/"$service
+	service_path="url=http://${IP_ADDRESS}:8090/"$service
 	route_path="http://localhost:8001/services/"$service"/routes"
 	plugin_path="http://localhost:8001/services/"$service"/plugins"
 	echo "Name is, $name"
