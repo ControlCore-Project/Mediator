@@ -7,6 +7,8 @@ import glob
 from flask import jsonify
 import shutil
 from filelock import FileLock
+import threading
+import time
 
 TRIMMED_LOGS = False
 
@@ -24,6 +26,16 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 SEPARATOR = "/"
 WORKDIR = "userfiles/"
+
+CLEANUP_PERIOD=3600
+#lightweight daemon to clear abandoned sessions and lockfiles
+def gc_sessions():
+    while True:
+        time.sleep(CLEANUP_PERIOD)  #run periodically
+        for directory in glob.glob(WORKDIR + "*"):
+            if os.path.isdir(directory) and time.time() - os.path.getmtime(directory) > CLEANUP_PERIOD:
+                shutil.rmtree(directory, ignore_errors=True)
+threading.Thread(target=gc_sessions, daemon=True).start()
 
 @app.route('/')
 def hello_world():
